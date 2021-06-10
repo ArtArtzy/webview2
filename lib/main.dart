@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:webview/pages/splash_page.dart';
+import 'package:webview/widgets/basic_webview.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 void main() {
@@ -12,12 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: WebView(
-          initialUrl: 'https://watjai.com/finnbet',
-          javascriptMode: JavascriptMode.unrestricted,
-        ),
-      ),
+      home: SplashPage(),
     );
   }
 }
