@@ -15,6 +15,7 @@ class _BasicWebviewState extends State<BasicWebview> {
   DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
   String _mobileVersion;
   final flutterWebviewPlugin = new FlutterWebviewPlugin();
+
   @override
   void initState() {
     super.initState();
@@ -40,7 +41,7 @@ class _BasicWebviewState extends State<BasicWebview> {
   }
 
   Future<bool> _handleOnBack() async {
-  var canGoBack = await  flutterWebviewPlugin.canGoBack();
+    var canGoBack = await flutterWebviewPlugin.canGoBack();
     if (canGoBack) {
       flutterWebviewPlugin.goBack();
       return false;
@@ -50,7 +51,8 @@ class _BasicWebviewState extends State<BasicWebview> {
 
   @override
   Widget build(BuildContext context) {
-  var url =  '${BuildConfig.WEBVIEW_URL}?wvAuth=${BuildConfig.PACKAGE_NAME}&key=${BuildConfig.KEY}&os=${Platform.operatingSystem}&mobileVersion=${_mobileVersion}';
+    var url =
+        '${BuildConfig.WEBVIEW_URL}?wvAuth=${BuildConfig.PACKAGE_NAME}&key=${Platform.isAndroid ? BuildConfig.KEY_ANDROID : BuildConfig.KEY_IOS}&os=${Platform.operatingSystem}&mobileVersion=${_mobileVersion}';
     return WillPopScope(
       onWillPop: _handleOnBack,
       child: Scaffold(
